@@ -1,12 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios  from 'axios';
+import store from './store/store';
+import { addUsers } from './actions/users';
+import Header from './components/Header';
+import UsersList from './components/UsersList';
+import { Provider } from 'react-redux';
+import './css/styles.css';
 
 class App extends React.Component {
+  componentDidMount() {
+    axios.get('http://localhost:3000/users')
+      .then(response => {
+        console.log(response.data);
+        store.dispatch(addUsers(response.data.results));
+      })
+  };
   render() {
     return (
-      <h1>Welcome to REACT! locl</h1>
+      <div>
+        <Header />
+        <UsersList />
+      </div>
     )
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Page = () => (
+  <Provider store={store}>
+  <App />
+ </Provider>
+);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Page />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
