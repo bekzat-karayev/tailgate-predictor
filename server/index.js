@@ -2,10 +2,19 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const config = require('../env/config.js');
+const dotenv = require('dotenv').config();
+const ENV = process.env.NODE_ENV || "production";
+const PORT = process.env.PORT || 5000;
 
 // Section 2
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: config[ENV].portal,
+  }),
+);
 
 // Section 3
 app.get('/', (req, res) => { 
@@ -20,6 +29,6 @@ app.get('/users', (req, res) => {
 });
 
 // Section 4
-app.listen(3000, () => {
- console.log('server started on port 3000');
+app.listen(PORT, () => {
+ console.log(`server started on port ${PORT}`);
 });
