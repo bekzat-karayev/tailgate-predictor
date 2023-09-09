@@ -9,6 +9,6 @@ module.exports = {
     database: '',
     port: 5000,
     portal: 'https://tailgate-predictor.azurewebsites.net/',
-    server: 'https://tailgate-predictor.azurewebsites.net/',
+    server: 'https://tailgate-predictor.azurewebsites.net:5000',
   }
 };

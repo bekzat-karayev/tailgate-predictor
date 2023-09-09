@@ -9,12 +9,13 @@ import { Provider } from 'react-redux';
 import './css/styles.css';
 
 const config = require('../env/config.js');
-const ENV = process.env.NODE_ENV;
+const ENV = process.env.NODE_ENV || "production";
 const usersPath = config[ENV].server + "/users";
+console.log(usersPath);
 
 class App extends React.Component {
   componentDidMount() {
-    axios.get('http://localhost:5000/users')
+    axios.get(usersPath)
       .then(response => {
         console.log(response.data);
         store.dispatch(addUsers(response.data.results));
