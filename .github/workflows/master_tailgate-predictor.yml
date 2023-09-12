@@ -29,7 +29,7 @@ jobs:
         run: npm run build-prod
 
       - name: Zip artifact for deployment
-        run: Compress-Archive . release.zip
+        run: Compress-Archive * release.zip
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -38,7 +38,7 @@ jobs:
           path: .
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
@@ -51,7 +51,7 @@ jobs:
           name: node-app
       
       - name: Unzip artifact for deployment
-        run: Expand-Archive release.zip
+        run: Expand-Archive release.zip -DestinationPath .
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
