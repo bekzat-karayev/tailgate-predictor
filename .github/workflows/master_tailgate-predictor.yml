@@ -31,7 +31,7 @@ jobs:
       - name: Zip artifact for deployment
         run: |
           mkdir tmp
-          tar.exe -a -c -f /tmp/release.zip --exclude=./tmp *
+          tar.exe -a -c -f tmp/release.zip --exclude=./tmp *
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
