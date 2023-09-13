@@ -53,7 +53,9 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: tar.exe -x -f tmp/release.zip
+        run: |
+          dir
+          tar.exe -x -f release.zip
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
