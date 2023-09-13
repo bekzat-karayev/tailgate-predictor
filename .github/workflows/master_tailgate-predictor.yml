@@ -30,18 +30,15 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
+          rmdir tmp
           mkdir tmp
           tar.exe -a -c -f tmp/release.zip --exclude=./tmp *
-          dir
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: tmp
-          if-no-files-found: |
-            warn
-            dir
+          path: ./server/tmp
 
   deploy:
     runs-on: windows-latest
