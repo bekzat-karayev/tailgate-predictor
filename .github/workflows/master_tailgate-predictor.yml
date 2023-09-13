@@ -32,12 +32,16 @@ jobs:
         run: |
           mkdir tmp
           tar.exe -a -c -f tmp/release.zip --exclude=./tmp *
+          dir
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
           path: tmp
+          if-no-files-found: |
+            warn
+            dir
 
   deploy:
     runs-on: windows-latest
@@ -53,7 +57,7 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: tar.exe -x -f ./tmp/release.zip
+        run: tar.exe -x -f tmp/release.zip
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
