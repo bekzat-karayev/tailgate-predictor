@@ -31,7 +31,6 @@ jobs:
       - name: Zip artifact for deployment
         run: |
           cd ..
-          dir
           mkdir tmp
           tar.exe -a -c -f tmp/release.zip --exclude=./tmp *
       
@@ -55,9 +54,7 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: |
-          dir
-          tar.exe -x -f release.zip
+        run: tar.exe -x -f release.zip
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
