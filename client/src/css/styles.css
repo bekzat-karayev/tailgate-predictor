@@ -2,19 +2,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: "Lato", "Helvetica", Helvetica, sans-serif;
-    background: #aa9a96;
-    color: #fff;
-    letter-spacing: 1px;
-    font-weight: 100;
-}
-
-.main-section {
-    width: 60%;
-    margin: auto;
-}
-
 .header {
     color: #f7df1e;
     text-align: center;
